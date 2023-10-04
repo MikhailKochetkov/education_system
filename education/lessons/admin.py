@@ -24,6 +24,7 @@ class LessonViewerAdmin(admin.ModelAdmin):
         'lesson',
         'viewed_time',
         'status',
+        'last_viewed_date',
     )
     search_fields = ('user', 'lesson',)
     list_filter = ('lesson',)
