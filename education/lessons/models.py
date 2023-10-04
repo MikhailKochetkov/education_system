@@ -18,11 +18,11 @@ class LessonViewer(models.Model):
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
     viewed_time = models.PositiveIntegerField(default=0)
     status = models.BooleanField(default=False)
+    last_viewed_date = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
-        total_duration = self.lesson.duration
-        if self.viewed_time >= (total_duration * 0.8):
-            self.status = True
-        else:
+        if self.viewed_time < self.lesson.duration * 0.8:
             self.status = False
+        else:
+            self.status = True
         super().save(*args, **kwargs)

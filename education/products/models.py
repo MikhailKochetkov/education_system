@@ -11,3 +11,8 @@ class Product(models.Model):
     owner = models.ForeignKey(User,
                               on_delete=models.CASCADE,
                               verbose_name='Владелец продукта')
+
+
+class ProductAccess(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
