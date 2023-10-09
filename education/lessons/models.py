@@ -13,7 +13,7 @@ class Lesson(models.Model):
     duration = models.PositiveIntegerField()
 
 
-class LessonViewer(models.Model):
+class LessonView(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
     viewed_time = models.PositiveIntegerField(default=0)
