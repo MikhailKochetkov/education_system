@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Lesson, LessonViewer
+from .models import Lesson, LessonView
 
 
 class LessonAdmin(admin.ModelAdmin):
@@ -24,6 +24,7 @@ class LessonViewerAdmin(admin.ModelAdmin):
         'lesson',
         'viewed_time',
         'status',
+        'last_viewed_date',
     )
     search_fields = ('user', 'lesson',)
     list_filter = ('lesson',)
@@ -31,4 +32,4 @@ class LessonViewerAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Lesson, LessonAdmin)
-admin.site.register(LessonViewer, LessonViewerAdmin)
+admin.site.register(LessonView, LessonViewerAdmin)

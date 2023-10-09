@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product
+from .models import Product, ProductAccess
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -14,4 +14,16 @@ class ProductAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
 
 
+class ProductAccessAdmin(admin.ModelAdmin):
+    list_display = (
+        'pk',
+        'user',
+        'product',
+    )
+    search_fields = ('user', 'product',)
+    list_filter = ('user', 'product',)
+    empty_value_display = '-пусто-'
+
+
 admin.site.register(Product, ProductAdmin)
+admin.site.register(ProductAccess, ProductAccessAdmin)
