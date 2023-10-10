@@ -5,19 +5,14 @@ from .models import Lesson, LessonView
 class LessonAdmin(admin.ModelAdmin):
     list_display = (
         'pk',
-        'get_products',
         'description',
         'video_link',
         'duration',
     )
-    search_fields = ('get_products',)
     empty_value_display = '-пусто-'
 
-    def get_products(self, obj):
-        return "\n".join([p.products for p in obj.product.all()])
 
-
-class LessonViewerAdmin(admin.ModelAdmin):
+class LessonViewAdmin(admin.ModelAdmin):
     list_display = (
         'pk',
         'user',
@@ -32,4 +27,4 @@ class LessonViewerAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Lesson, LessonAdmin)
-admin.site.register(LessonView, LessonViewerAdmin)
+admin.site.register(LessonView, LessonViewAdmin)

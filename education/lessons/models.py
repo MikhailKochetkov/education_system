@@ -15,10 +15,13 @@ class Lesson(models.Model):
 
 class LessonView(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, related_name='views')
     viewed_time = models.PositiveIntegerField(default=0)
     status = models.BooleanField(default=False)
     last_viewed_date = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ('lesson', 'user')
 
     def save(self, *args, **kwargs):
         if self.viewed_time < self.lesson.duration * 0.8:
